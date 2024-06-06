@@ -1,0 +1,84 @@
+{%  extends 'accounts/main_template.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+	.profile-pic{
+		max-width: 200px;
+		max-height:200px;
+		margin: 0 auto;
+		border-radius: 50%;
+
+	}
+
+	.password{
+		text-align: center;
+		font-size: 18px;
+		font-weight: 900;
+		font-family: sans-serif;
+	}
+
+	 /* Styling for form fields */
+	 .form-group label {
+        font-weight: bold;
+    }
+
+    .form-group input[type="file"] {
+        color: blue; 
+    }
+	.form-group label[type="url"] {
+        color: blue; 
+    }
+
+    .form-group label.name{
+		display: none;
+	}
+</style>
+
+<br>
+<div class="row">
+	<div class="col-md-3">
+		<div class="card card-body">
+			<a class="btn btn-warning" href="{% url 'dashboard' %}"> &#8592; Back to Profile</a>
+			<hr>
+			<h3 style="text-align: center">Account Settings</h3>
+			<hr>
+			<img class="profile-pic" src="{{request.user.customer.profile_pic.url}}" >
+			{% if request.user.is_authenticated %}
+			
+			<span class="password" ><a class="dropdown-item" href="{% url 'passwordchange' %}">Change Password</a></span>
+			
+			{% endif %}
+		
+		</div>
+	</div>
+	<div class="col-md-9">
+		<div class="card card-body">
+			
+			<form method="POST" action="" enctype="multipart/form-data">
+				{% csrf_token %}
+				<!-- {{form.as_p}} -->
+				{% for field in form %}
+					<div class="form-group">
+						<label>{{ field.label }}</label>
+						{{ field }}
+						{% if field.errors %}
+							<ul class="errors">
+								{% for error in field.errors %}
+									<li>{{ error }}</li>
+								{% endfor %}
+							</ul>
+        				{% endif %}
+					</div>
+				{% endfor %}
+
+		
+			<input class="btn btn-primary" type="submit" name="Update Information">
+			</form>
+		</div>
+	</div>
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,30 @@
+<style>
+  
+  .footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+  }
+
+
+  /* p{
+    text-align: center;
+      } */
+</style>
+<footer class="footer">
+      <div class="container">
+        <!-- <span class="text-muted">Copyright @ Adjeh Dominic</span> -->
+        <p class="text-muted">Copyright &#169; <span id="year"></span> Adjeh Dominic. All Rights Reserved.</p>
+      </div>
+  </footer>
+  <script>
+    const year = document.querySelector('#year');
+  
+  
+    const presentDate = new Date();
+    const presentYear = presentDate.getFullYear();
+    console.log(presentYear)
+    year.innerHTML = presentYear;
+  </script>
+
