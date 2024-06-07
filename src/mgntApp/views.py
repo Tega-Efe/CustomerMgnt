@@ -76,7 +76,7 @@ def createcustomer(request):
 #-------------------(DETAIL/LIST VIEWS) -------------------
 @login_required(login_url='login')
 @admin_only
-def dashBoard(request):
+def dashboard(request):
 	# .order_by('-status')[0:5]
 	orders = Order.objects.all()
 	customers = Customer.objects.all()
@@ -96,7 +96,7 @@ def dashBoard(request):
 	'total_customers':total_customers,'total_orders':total_orders, 
 	'delivered':delivered, 'pending':pending}
 
-	return render(request, 'accounts/dashBoard.html', context)
+	return render(request, 'accounts/dashboard.html', context)
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['customer'])
